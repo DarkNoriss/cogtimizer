@@ -343,7 +343,7 @@ class CogInventory {
           });
       });
 
-    console.log("bonusGrid", bonusGrid);
+    console.log("bonusGrid initlal", bonusGrid);
 
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
@@ -450,7 +450,7 @@ class CogInventory {
       result.flagBoost += bonus.flagBoost || 0;
     }
     result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
-    console.log("bonusGrid", bonusGrid);
+    console.log("bonusGrid end", bonusGrid);
     return (this._score = result);
   }
 
