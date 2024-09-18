@@ -142,9 +142,9 @@ class CogInventory {
   }
 
   static _saveGet(arr, ...indexes) {
-    arr.forEach((element) => {
-      element.forEach((i) => console.log(i.buildRate));
-    });
+    // arr.forEach((element) => {
+    //   element.forEach((i) => console.log(i.buildRate));
+    // });
     // console.log("Arr", arr);
     while (indexes.length) {
       if (arr === undefined) break;
@@ -413,6 +413,10 @@ class CogInventory {
         default:
           break;
       }
+
+      bonusGrid.forEach((e) => {
+        e.forEach((i) => console.log(i.buildRate));
+      });
 
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
