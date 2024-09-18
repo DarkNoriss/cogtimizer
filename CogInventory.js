@@ -439,10 +439,6 @@ class CogInventory {
       result.flaggy += Math.ceil((entry.flaggy || 0) * f);
     }
 
-    console.log(
-      `Result BR: ${result.buildRate}, Result EB: ${result.expBonus}, Result F: ${result.flaggy}, Result EB: ${result.expBoost}`
-    );
-
     for (let key of this.flagPose) {
       const entry = this.get(key);
       const pos = entry.position();
@@ -450,6 +446,10 @@ class CogInventory {
       result.flagBoost += bonus.flagBoost || 0;
     }
     result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
+
+    console.log(
+      `Result BR: ${result.buildRate}, Result EB: ${result.expBonus}, Result F: ${result.flaggy}, Result EB: ${result.expBoost}`
+    );
 
     return (this._score = result);
   }
