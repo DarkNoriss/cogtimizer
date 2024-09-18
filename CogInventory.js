@@ -142,10 +142,6 @@ class CogInventory {
   }
 
   static _saveGet(arr, ...indexes) {
-    // arr.forEach((element) => {
-    //   element.forEach((i) => console.log(i.buildRate));
-    // });
-    // console.log("Arr", arr);
     while (indexes.length) {
       if (arr === undefined) break;
       arr = arr[indexes.splice(0, 1)[0]];
@@ -418,8 +414,6 @@ class CogInventory {
           break;
       }
 
-      console.log("bonusGrid", bonusGrid);
-
       // bonusGrid.forEach((e) => {
       //   e.forEach((i) => console.log(i.buildRate));
       // });
@@ -458,6 +452,7 @@ class CogInventory {
       result.flagBoost += bonus.flagBoost || 0;
     }
     result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
+    console.log("bonusGrid", bonusGrid);
     return (this._score = result);
   }
 
