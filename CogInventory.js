@@ -143,11 +143,13 @@ class CogInventory {
 
   static _saveGet(arr, ...indexes) {
     console.log("Arr", arr);
-    console.log("Indexes", indexes);
     while (indexes.length) {
       if (arr === undefined) break;
+      console.log("Indexes", indexes);
       arr = arr[indexes.splice(0, 1)[0]];
     }
+    console.log("Arr", arr);
+
     return arr;
   }
 
