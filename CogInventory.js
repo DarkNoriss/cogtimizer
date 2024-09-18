@@ -4,7 +4,7 @@ const ICON_QUALITY_MAP = {
   ["2"]: "Superb",
   ["3"]: "Ultimate",
   ["Y"]: "Yang",
-  ["Z"]: "Yin"
+  ["Z"]: "Yin",
 };
 const ICON_TYPE_MAP = {
   ["A00"]: "Cog",
@@ -32,7 +32,7 @@ const YIN_MAP = {
   ["A00"]: "Yin_Top_Left_Cog",
   ["A01"]: "Yin_Top_Right_Cog",
   ["A02"]: "Yin_Bottom_Left_Cog",
-  ["A03"]: "Yin_Bottom_Right_Cog"
+  ["A03"]: "Yin_Bottom_Right_Cog",
 };
 const INV_ROWS = 8;
 const INV_COLUMNS = 12;
@@ -60,11 +60,11 @@ class Cog {
     this._position = null;
   }
   get key() {
-    return this._key
+    return this._key;
   }
   set key(v) {
     this._position = null;
-    this._key = Number.parseInt(v)
+    this._key = Number.parseInt(v);
   }
   position(keyNum) {
     const isDefault = keyNum === undefined;
@@ -73,7 +73,7 @@ class Cog {
     // board = 0-95
     // build = 96-107
     // spare = 108-*
-    const location = keyNum >= 96 ? keyNum <= 107 ? "build" : "spare" : "board";
+    const location = keyNum >= 96 ? (keyNum <= 107 ? "build" : "spare") : "board";
     let perRow = 3;
     let offset = SPARE_START;
     if (location === "board") {
@@ -95,34 +95,34 @@ class Cog {
 class FakeBoard {
   constructor(inventory) {
     this.inventory = inventory;
-    
+
     this.length = INV_ROWS;
-    this[Symbol.Iterator] = function*() {
+    this[Symbol.Iterator] = function* () {
       for (let s = 0; s < INV_ROWS; s++) yield s;
-    }
+    };
 
     for (let i = 0; i < INV_ROWS; i++) {
       const columnProxy = {
         length: INV_COLUMNS,
         [Symbol.Iterator]: function* () {
           for (let s = 0; s < INV_COLUMNS; s++) yield s;
-        }
-      }
+        },
+      };
       for (let j = 0; j < INV_COLUMNS; j++) {
         const key = i * INV_COLUMNS + j;
         Object.defineProperty(columnProxy, j, {
-          get: () => this.inventory.get(key)
+          get: () => this.inventory.get(key),
         });
       }
       Object.defineProperty(this, i, {
-        get: () => columnProxy
+        get: () => columnProxy,
       });
     }
   }
 }
 
 class CogInventory {
-  constructor(cogs={}, slots={}) {
+  constructor(cogs = {}, slots = {}) {
     this.cogs = cogs;
     this.slots = slots;
     this.flagPose = [];
@@ -132,23 +132,23 @@ class CogInventory {
     // Saved for performance
     this._board = new FakeBoard(this);
   }
-  
+
   get cogKeys() {
     return Object.keys(this.cogs);
   }
-  
+
   get(key) {
-    return this.cogs[key] || this.slots[key]
+    return this.cogs[key] || this.slots[key];
   }
-  
+
   static _saveGet(arr, ...indexes) {
-    while(indexes.length) {
+    while (indexes.length) {
       if (arr === undefined) break;
       arr = arr[indexes.splice(0, 1)[0]];
     }
     return arr;
   }
-  
+
   load(save) {
     this.availableSlotKeys = [];
     this._score = null;
@@ -158,17 +158,17 @@ class CogInventory {
     foo[1] = "Beginner"; // White
     foo[2] = "Journeyman";
     foo[3] = "Maestro";
-    foo[7] = "Warrior"; // 
+    foo[7] = "Warrior"; //
     foo[8] = "Barbarian";
     foo[9] = "Squire";
     foo[10] = "Blood Berserker";
     foo[12] = "Divine Knight";
-    foo[19] = "Archer"; // 
+    foo[19] = "Archer"; //
     foo[20] = "Bowman";
     foo[21] = "Hunter";
     foo[22] = "Siege Breaker";
     foo[25] = "Beast Master";
-    foo[31] = "Mage"; // 
+    foo[31] = "Mage"; //
     foo[32] = "Wizard";
     foo[33] = "Shaman";
     foo[34] = "Elemental Sorcerer";
@@ -184,20 +184,20 @@ class CogInventory {
 
         if (classNameIndex >= 31) {
           // Mage
-          window.player._colorHead(.9, .77, 1);
+          window.player._colorHead(0.9, 0.77, 1);
         } else if (classNameIndex >= 19) {
           // Archer
-          window.player._colorHead(.58, 1, .6);
+          window.player._colorHead(0.58, 1, 0.6);
         } else if (classNameIndex >= 7) {
           // Warrior
-          window.player._colorHead(1, .77, .75);
+          window.player._colorHead(1, 0.77, 0.75);
         } else if (classNameIndex === 9) {
           // Squire
           window.player._colorHead(1, 1, 0);
         } else {
           // Beginner
           // Journeyman
-          window.player._colorHead(.5, .91, .92);
+          window.player._colorHead(0.5, 0.91, 0.92);
         }
 
         const equipmentSlot = `EquipOrder_${i}`;
@@ -214,7 +214,7 @@ class CogInventory {
                 const index = parseInt(match[1]);
                 hatIcons[v] = {
                   type: "hat",
-                  path: window.player.render(index)
+                  path: window.player.render(index),
                 };
                 hatFound = true;
               }
@@ -225,7 +225,7 @@ class CogInventory {
         if (!hatFound) {
           hatIcons[v] = {
             type: "head",
-						path: "icons/head.png"
+            path: "icons/head.png",
           };
         }
       });
@@ -235,22 +235,22 @@ class CogInventory {
     this.flaggyShopUpgrades = JSON.parse(save["GemItemsPurchased"])[118];
     // Fetch the list of available cogs
     const cogRaw = JSON.parse(save["CogM"]);
-    const cogIcons = JSON.parse(save["CogO"]).map(c=>{
+    const cogIcons = JSON.parse(save["CogO"]).map((c) => {
       let icon = {
-        type: "cog"
+        type: "cog",
       };
-      if(c === "Blank") {
+      if (c === "Blank") {
         icon.type = "blank";
-        icon.path = "assets/cog_blank.png"
-      } else if(c.startsWith("Player")) {
+        icon.path = "assets/cog_blank.png";
+      } else if (c.startsWith("Player")) {
         icon = hatIcons[c.substring(7)] || { type: "head", path: "icons/head.png" };
-      } else if(c === "CogY") {
+      } else if (c === "CogY") {
         icon.type = "cog";
         icon.path = "icons/cogs/Yang_Cog.png";
       } else {
         icon.type = "cog";
-        const parsed=c.match(/^Cog([0123YZ])(.{2,3})$/);
-        if(parsed[1] === "Z") {
+        const parsed = c.match(/^Cog([0123YZ])(.{2,3})$/);
+        if (parsed[1] === "Z") {
           icon.path = "icons/cogs/" + YIN_MAP[parsed[2]] + ".png";
         } else {
           icon.path = "icons/cogs/" + ICON_TYPE_MAP[parsed[2]] + "_" + ICON_QUALITY_MAP[parsed[1]] + ".png";
@@ -275,13 +275,14 @@ class CogInventory {
         flagBoost: c.j,
         nothing: c.k,
         fixed: c.h === "everything",
-        blocked: false
+        blocked: false,
       });
     });
     // Get the available board
-    this.flagPose = JSON.parse(save["FlagP"]).filter(v=>v>=0); // Only first 4 are used
+    this.flagPose = JSON.parse(save["FlagP"]).filter((v) => v >= 0); // Only first 4 are used
     const slots = JSON.parse(save["FlagU"]).map((n, i) => {
-      if (n > 0 && this.flagPose.includes(i)) return new Cog({ key: i, fixed: true, blocked: true, isFlag: true, icon: "Blank" });
+      if (n > 0 && this.flagPose.includes(i))
+        return new Cog({ key: i, fixed: true, blocked: true, isFlag: true, icon: "Blank" });
       if (n !== -11) return new Cog({ key: i, fixed: true, blocked: true });
       return new Cog({ key: i, icon: "Blank" });
     });
@@ -300,14 +301,14 @@ class CogInventory {
 
     document.getElementById("notify").style.display = "none";
   }
-  
+
   clone() {
     const c = {};
-    for (let [k,v] of Object.entries(this.cogs)) {
+    for (let [k, v] of Object.entries(this.cogs)) {
       c[k] = new Cog(v);
     }
     const s = {};
-    for (let [k,v] of Object.entries(this.slots)) {
+    for (let [k, v] of Object.entries(this.slots)) {
       s[k] = new Cog(v);
     }
     const res = new CogInventory(c, s);
@@ -316,11 +317,11 @@ class CogInventory {
     res.availableSlotKeys = [...this.availableSlotKeys];
     return res;
   }
-  
+
   get board() {
     return this._board;
   }
-  
+
   get score() {
     if (this._score !== null) return this._score;
 
@@ -329,57 +330,79 @@ class CogInventory {
       expBonus: 0,
       flaggy: 0,
       expBoost: 0,
-      flagBoost: 0
+      flagBoost: 0,
     };
 
     const board = this.board;
-    const bonusGrid = Array(INV_ROWS).fill(0).map(() => { return Array(INV_COLUMNS).fill(0).map(() => { return { ...result } })});
+    const bonusGrid = Array(INV_ROWS)
+      .fill(0)
+      .map(() => {
+        return Array(INV_COLUMNS)
+          .fill(0)
+          .map(() => {
+            return { ...result };
+          });
+      });
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
+      console.log(entry);
       if (!entry.boostRadius) continue;
       const boosted = [];
       const { x: j, y: i } = entry.position();
       switch (entry.boostRadius) {
         case "diagonal":
-          boosted.push([i-1, j-1],[i-1, j+1],[i+1, j-1],[i+1, j+1]);
+          boosted.push([i - 1, j - 1], [i - 1, j + 1], [i + 1, j - 1], [i + 1, j + 1]);
           break;
         case "adjacent":
-          boosted.push([i-1, j],[i, j+1],[i+1, j],[i, j-1]);
+          boosted.push([i - 1, j], [i, j + 1], [i + 1, j], [i, j - 1]);
           break;
         case "up":
-          boosted.push([i-2, j-1],[i-2, j],[i-2, j+1],[i-1, j-1],[i-1, j],[i-1, j+1]);
+          boosted.push([i - 2, j - 1], [i - 2, j], [i - 2, j + 1], [i - 1, j - 1], [i - 1, j], [i - 1, j + 1]);
           break;
         case "right":
-          boosted.push([i-1, j+2],[i, j+2],[i+1, j+2],[i-1, j+1],[i, j+1],[i+1, j+1]);
+          boosted.push([i - 1, j + 2], [i, j + 2], [i + 1, j + 2], [i - 1, j + 1], [i, j + 1], [i + 1, j + 1]);
           break;
         case "down":
-          boosted.push([i+2, j-1],[i+2, j],[i+2, j+1],[i+1, j-1],[i+1, j],[i+1, j+1]);
+          boosted.push([i + 2, j - 1], [i + 2, j], [i + 2, j + 1], [i + 1, j - 1], [i + 1, j], [i + 1, j + 1]);
           break;
         case "left":
-          boosted.push([i-1, j-2],[i, j-2],[i+1, j-2],[i-1, j-1],[i, j-1],[i+1, j-1]);
+          boosted.push([i - 1, j - 2], [i, j - 2], [i + 1, j - 2], [i - 1, j - 1], [i, j - 1], [i + 1, j - 1]);
           break;
         case "row":
           for (let k = 0; k < INV_COLUMNS; k++) {
-            if(j == k) continue;
+            if (j == k) continue;
             boosted.push([i, k]);
           }
           break;
         case "column":
           for (let k = 0; k < INV_ROWS; k++) {
-            if(i == k) continue;
+            if (i == k) continue;
             boosted.push([k, j]);
           }
           break;
         case "corner":
-          boosted.push([i-2, j-2],[i-2, j+2],[i+2, j-2],[i+2, j+2]);
+          boosted.push([i - 2, j - 2], [i - 2, j + 2], [i + 2, j - 2], [i + 2, j + 2]);
           break;
         case "around":
-          boosted.push([i-2, j],[i-1, j-1],[i-1, j],[i-1, j+1],[i, j-2],[i, j-1],[i, j+1],[i, j+2],[i+1, j-1],[i+1, j],[i+1, j+1],[i+2, j]);
+          boosted.push(
+            [i - 2, j],
+            [i - 1, j - 1],
+            [i - 1, j],
+            [i - 1, j + 1],
+            [i, j - 2],
+            [i, j - 1],
+            [i, j + 1],
+            [i, j + 2],
+            [i + 1, j - 1],
+            [i + 1, j],
+            [i + 1, j + 1],
+            [i + 2, j]
+          );
           break;
         case "everything":
           for (let k = 0; k < INV_ROWS; k++) {
             for (let l = 0; l < INV_COLUMNS; l++) {
-              if(i === k && j === l) continue;
+              if (i === k && j === l) continue;
               boosted.push([k, l]);
             }
           }
@@ -390,13 +413,13 @@ class CogInventory {
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
         if (!bonus) continue;
-        bonus.buildRate += entry.buildRadiusBoost  || 0;
-        bonus.flaggy    += entry.flaggyRadiusBoost || 0;
-        bonus.expBoost  += entry.expRadiusBoost    || 0;
-        bonus.flagBoost += entry.flagBoost         || 0;
+        bonus.buildRate += entry.buildRadiusBoost || 0;
+        bonus.flaggy += entry.flaggyRadiusBoost || 0;
+        bonus.expBoost += entry.expRadiusBoost || 0;
+        bonus.flagBoost += entry.flagBoost || 0;
       }
     }
- 
+
     // Bonus grid done, now we can sum everything up
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
@@ -420,9 +443,9 @@ class CogInventory {
       result.flagBoost += bonus.flagBoost || 0;
     }
     result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
-    return this._score = result;
+    return (this._score = result);
   }
-  
+
   move(pos1, pos2) {
     this._score = null;
     if (Array.isArray(pos1)) {
@@ -435,16 +458,16 @@ class CogInventory {
     }
     const temp = this.cogs[pos2];
     this.cogs[pos2] = this.cogs[pos1];
-		if (!this.cogs[pos2]) {
-			delete this.cogs[pos2];
-		} else {
-			this.cogs[pos2].key = pos2;
-		}
+    if (!this.cogs[pos2]) {
+      delete this.cogs[pos2];
+    } else {
+      this.cogs[pos2].key = pos2;
+    }
     this.cogs[pos1] = temp;
-		if (!this.cogs[pos1]) {
-			delete this.cogs[pos1];
-		} else {
-			this.cogs[pos1].key = pos1;
-		}
+    if (!this.cogs[pos1]) {
+      delete this.cogs[pos1];
+    } else {
+      this.cogs[pos1].key = pos1;
+    }
   }
 }
