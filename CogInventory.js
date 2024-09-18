@@ -413,7 +413,6 @@ class CogInventory {
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
         if (!bonus) continue;
-        console.log(`Bonus: ${bonus.buildRate}`);
         bonus.buildRate += entry.buildRadiusBoost || 0;
         bonus.flaggy += entry.flaggyRadiusBoost || 0;
         bonus.expBoost += entry.expRadiusBoost || 0;
@@ -430,7 +429,9 @@ class CogInventory {
       const pos = entry.position();
       const bonus = bonusGrid[pos.y][pos.x];
       const b = (bonus.buildRate || 0) / 100;
-      result.buildRate += Math.ceil((entry.buildRate || 0) * b);
+      var mathCel = Math.ceil((entry.buildRate || 0) * b);
+      console.log(mathCel);
+      result.buildRate += mathCel;
       if (entry.isPlayer) {
         result.expBoost += bonus.expBoost || 0;
       }
