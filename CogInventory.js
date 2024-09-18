@@ -345,7 +345,7 @@ class CogInventory {
       });
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
-      console.log(entry);
+      console.log(entry.boostRadius);
       if (!entry.boostRadius) continue;
       const boosted = [];
       const { x: j, y: i } = entry.position();
