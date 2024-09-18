@@ -142,14 +142,11 @@ class CogInventory {
   }
 
   static _saveGet(arr, ...indexes) {
-    console.log("arr START", arr);
-    console.log("indexes", indexes);
     for (const index of indexes) {
       if (arr === undefined) break;
       arr = arr[index];
-      console.log("arr INSIDE", arr);
     }
-    console.log("arr END", arr);
+
     return arr;
   }
 
@@ -345,6 +342,8 @@ class CogInventory {
         flagBoost: 0,
       }))
     );
+
+    console.log("bonusGrid", this.bonusGrid);
 
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
