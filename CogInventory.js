@@ -340,7 +340,7 @@ class CogInventory {
         return Array(INV_COLUMNS)
           .fill(0)
           .map(() => {
-            console.log(...result);
+            console.log(result);
             return { ...result };
           });
       });
