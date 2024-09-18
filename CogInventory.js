@@ -343,9 +343,7 @@ class CogInventory {
           });
       });
 
-    bonusGrid.forEach((e) => {
-      e.forEach((i) => console.log(i.buildRate));
-    });
+    console.log("bonusGrid", bonusGrid);
 
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
