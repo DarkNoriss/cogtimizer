@@ -331,7 +331,7 @@ class CogInventory {
       expBoost: 0,
       flagBoost: 0,
     };
-    console.log("result initial ", ...result);
+    console.log("result initial ", result);
 
     const board = this.board;
     const bonusGrid = Array(INV_ROWS)
