@@ -347,6 +347,10 @@ class CogInventory {
           });
       });
 
+    bonusGrid.forEach((e) => {
+      e.forEach((i) => console.log(i.buildRate));
+    });
+
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
       if (!entry.boostRadius) continue;
@@ -414,9 +418,9 @@ class CogInventory {
           break;
       }
 
-      bonusGrid.forEach((e) => {
-        e.forEach((i) => console.log(i.buildRate));
-      });
+      // bonusGrid.forEach((e) => {
+      //   e.forEach((i) => console.log(i.buildRate));
+      // });
 
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
