@@ -426,29 +426,29 @@ class CogInventory {
     }
 
     // Bonus grid done, now we can sum everything up
-    for (let key of this.availableSlotKeys) {
-      const entry = this.get(key);
-      result.buildRate += entry.buildRate || 0;
-      result.expBonus += entry.expBonus || 0;
-      result.flaggy += entry.flaggy || 0;
-      const pos = entry.position();
-      const bonus = bonusGrid[pos.y][pos.x];
-      const b = (bonus.buildRate || 0) / 100;
-      result.buildRate += Math.ceil((entry.buildRate || 0) * b);
-      if (entry.isPlayer) {
-        result.expBoost += bonus.expBoost || 0;
-      }
-      const f = (bonus.flaggy || 0) / 100;
-      result.flaggy += Math.ceil((entry.flaggy || 0) * f);
-    }
-    for (let key of this.flagPose) {
-      const entry = this.get(key);
-      const pos = entry.position();
-      const bonus = bonusGrid[pos.y][pos.x];
-      result.flagBoost += bonus.flagBoost || 0;
-    }
-    result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
-    console.log("bonus grid end", bonusGrid);
+    // for (let key of this.availableSlotKeys) {
+    //   const entry = this.get(key);
+    //   result.buildRate += entry.buildRate || 0;
+    //   result.expBonus += entry.expBonus || 0;
+    //   result.flaggy += entry.flaggy || 0;
+    //   const pos = entry.position();
+    //   const bonus = bonusGrid[pos.y][pos.x];
+    //   const b = (bonus.buildRate || 0) / 100;
+    //   result.buildRate += Math.ceil((entry.buildRate || 0) * b);
+    //   if (entry.isPlayer) {
+    //     result.expBoost += bonus.expBoost || 0;
+    //   }
+    //   const f = (bonus.flaggy || 0) / 100;
+    //   result.flaggy += Math.ceil((entry.flaggy || 0) * f);
+    // }
+    // for (let key of this.flagPose) {
+    //   const entry = this.get(key);
+    //   const pos = entry.position();
+    //   const bonus = bonusGrid[pos.y][pos.x];
+    //   result.flagBoost += bonus.flagBoost || 0;
+    // }
+    // result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
+    // console.log("bonus grid end", bonusGrid);
 
     return (this._score = result);
   }
