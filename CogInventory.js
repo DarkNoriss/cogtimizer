@@ -180,7 +180,6 @@ class CogInventory {
         const classNameSlot = `CharacterClass_${i}`;
         const classNameIndex = save[classNameSlot];
         const className = foo[classNameIndex];
-        console.log(v, classNameIndex, className);
 
         if (classNameIndex >= 31) {
           // Mage
@@ -344,8 +343,6 @@ class CogInventory {
           });
       });
 
-    console.log(bonusGrid);
-
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
       if (!entry.boostRadius) continue;
@@ -415,8 +412,8 @@ class CogInventory {
       console.log(`Boosted: ${boosted.length}`);
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
+        console.log(bonus);
         if (!bonus) continue;
-        console.log(boostCord);
         bonus.buildRate += entry.buildRadiusBoost || 0;
         bonus.flaggy += entry.flaggyRadiusBoost || 0;
         bonus.expBoost += entry.expRadiusBoost || 0;
