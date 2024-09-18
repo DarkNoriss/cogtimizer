@@ -142,9 +142,9 @@ class CogInventory {
   }
 
   static _saveGet(arr, ...indexes) {
-    while (indexes.length) {
+    for (const index of indexes) {
       if (arr === undefined) break;
-      arr = arr[indexes.splice(0, 1)[0]];
+      arr = arr[index];
     }
 
     return arr;
