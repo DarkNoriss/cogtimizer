@@ -429,7 +429,7 @@ class CogInventory {
       const pos = entry.position();
       const bonus = bonusGrid[pos.y][pos.x];
       const b = (bonus.buildRate || 0) / 100;
-      var mathCel = Math.ceil((entry.buildRate || 0) * b);
+      const mathCel = Math.ceil((entry.buildRate || 0) * b);
       console.log(mathCel);
       result.buildRate += mathCel;
       if (entry.isPlayer) {
