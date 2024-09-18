@@ -142,12 +142,14 @@ class CogInventory {
   }
 
   static _saveGet(arr, ...indexes) {
-    console.log("Arr", arr);
+    arr.forEach((element) => {
+      element.forEach((i) => console.log(i.buildRate));
+    });
+    // console.log("Arr", arr);
     while (indexes.length) {
       if (arr === undefined) break;
       arr = arr[indexes.splice(0, 1)[0]];
     }
-    console.log("Arr", arr);
 
     return arr;
   }
