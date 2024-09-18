@@ -344,18 +344,7 @@ class CogInventory {
       }))
     );
 
-    const bonusGrid2 = Array.from({ length: INV_ROWS }, () =>
-      Array.from({ length: INV_COLUMNS }, () => ({
-        buildRate: 0,
-        expBonus: 0,
-        flaggy: 0,
-        expBoost: 0,
-        flagBoost: 0,
-      }))
-    );
-
     console.log("bonus grid  initlal", bonusGrid);
-    console.log("bonus grid2  initlal", bonusGrid2);
 
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
@@ -425,7 +414,8 @@ class CogInventory {
       }
 
       for (const boostCord of boosted) {
-        const bonus = CogInventory._saveGet(bonusGrid2, ...boostCord);
+        const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
+        console.log("bonus ", bonus);
 
         if (!bonus) continue;
         bonus.buildRate += entry.buildRadiusBoost || 0;
@@ -459,7 +449,7 @@ class CogInventory {
     }
     result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
     console.log("bonus grid end", bonusGrid);
-    console.log("bonus grid2 end", bonusGrid2);
+
     return (this._score = result);
   }
 
