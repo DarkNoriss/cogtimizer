@@ -410,6 +410,7 @@ class CogInventory {
         default:
           break;
       }
+      console.log(`Boosted: ${boosted.length}`);
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
         if (!bonus) continue;
