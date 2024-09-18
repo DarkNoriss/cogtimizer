@@ -343,7 +343,7 @@ class CogInventory {
       }))
     );
 
-    console.log("bonusGrid", this.bonusGrid);
+    console.log("bonusGrid", bonusGrid);
 
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
