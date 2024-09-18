@@ -418,6 +418,8 @@ class CogInventory {
           break;
       }
 
+      console.log("bonusGrid", bonusGrid);
+
       // bonusGrid.forEach((e) => {
       //   e.forEach((i) => console.log(i.buildRate));
       // });
