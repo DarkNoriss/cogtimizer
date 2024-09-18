@@ -410,11 +410,9 @@ class CogInventory {
           break;
       }
 
-      console.log(`Boosted cogs: ${boosted.length}`);
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
-        console.log(`Boosting ${boostCord[0]}, ${boostCord[1]}`);
-        console.log(bonus);
+
         if (!bonus) continue;
 
         bonus.buildRate += entry.buildRadiusBoost || 0;
@@ -450,7 +448,7 @@ class CogInventory {
     }
     result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
 
-    console.log(result);
+    console.log(`Result: ${result}`);
     return (this._score = result);
   }
 
