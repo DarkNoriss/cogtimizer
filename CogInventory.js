@@ -344,6 +344,8 @@ class CogInventory {
           });
       });
 
+    console.log(bonusGrid);
+
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
       if (!entry.boostRadius) continue;
