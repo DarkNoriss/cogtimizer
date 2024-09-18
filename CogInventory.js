@@ -142,11 +142,12 @@ class CogInventory {
   }
 
   static _saveGet(arr, ...indexes) {
+    console.log("arr", arr);
     for (const index of indexes) {
       if (arr === undefined) break;
       arr = arr[index];
     }
-
+    console.log("arr", arr);
     return arr;
   }
 
