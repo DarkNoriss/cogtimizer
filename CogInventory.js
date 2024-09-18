@@ -142,6 +142,7 @@ class CogInventory {
   }
 
   static _saveGet(arr, ...indexes) {
+    console.log(indexes);
     for (const index of indexes) {
       if (arr === undefined) break;
       arr = arr[index];
@@ -430,7 +431,6 @@ class CogInventory {
       const bonus = bonusGrid[pos.y][pos.x];
       const b = (bonus.buildRate || 0) / 100;
       const mathCel = Math.ceil((entry.buildRate || 0) * b);
-      console.log(mathCel);
       result.buildRate += mathCel;
       if (entry.isPlayer) {
         result.expBoost += bonus.expBoost || 0;
@@ -445,14 +445,7 @@ class CogInventory {
       const bonus = bonusGrid[pos.y][pos.x];
       result.flagBoost += bonus.flagBoost || 0;
     }
-    const upgra = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
-    console.log(`FLAGGY: ${result.flaggy}`);
-    console.log(`CALCULATED FLAGGY: ${upgra}`);
-    result.flaggy = upgra;
-
-    console.log(
-      `Result BR: ${result.buildRate}, Result EB: ${result.expBonus}, Result F: ${result.flaggy}, Result EB: ${result.expBoost}`
-    );
+    result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
 
     return (this._score = result);
   }
