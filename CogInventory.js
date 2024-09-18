@@ -333,7 +333,7 @@ class CogInventory {
     };
 
     const board = this.board;
-    const bonusGrid = Array.from({ length: INV_ROWS }, () =>
+    const bonusGrid2 = Array.from({ length: INV_ROWS }, () =>
       Array.from({ length: INV_COLUMNS }, () => ({
         buildRate: 0,
         expBonus: 0,
@@ -343,7 +343,7 @@ class CogInventory {
       }))
     );
 
-    console.log("bonusGrid", bonusGrid);
+    console.log("bonusGrid", bonusGrid2);
 
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
@@ -411,6 +411,8 @@ class CogInventory {
         default:
           break;
       }
+
+      console.log("bonus grid", bonusGrid);
 
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
