@@ -145,7 +145,6 @@ class CogInventory {
     console.log("Arr", arr);
     while (indexes.length) {
       if (arr === undefined) break;
-      console.log("Indexes", indexes);
       arr = arr[indexes.splice(0, 1)[0]];
     }
     console.log("Arr", arr);
@@ -183,7 +182,6 @@ class CogInventory {
       playerNames.forEach((v, i) => {
         const classNameSlot = `CharacterClass_${i}`;
         const classNameIndex = save[classNameSlot];
-        const className = foo[classNameIndex];
 
         if (classNameIndex >= 31) {
           // Mage
@@ -413,10 +411,10 @@ class CogInventory {
         default:
           break;
       }
-      // console.log(`Boosted: ${boosted.length}`);
+
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
-        // console.log(`Bonus: ${bonus.buildRate}`);
+
         if (!bonus) continue;
         bonus.buildRate += entry.buildRadiusBoost || 0;
         bonus.flaggy += entry.flaggyRadiusBoost || 0;
