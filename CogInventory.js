@@ -142,6 +142,8 @@ class CogInventory {
   }
 
   static _saveGet(arr, ...indexes) {
+    console.log("Arr", arr);
+    console.log("Indexes", indexes);
     while (indexes.length) {
       if (arr === undefined) break;
       arr = arr[indexes.splice(0, 1)[0]];
@@ -409,10 +411,10 @@ class CogInventory {
         default:
           break;
       }
-      console.log(`Boosted: ${boosted.length}`);
+      // console.log(`Boosted: ${boosted.length}`);
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
-        console.log(`Bonus: ${bonus.buildRate}`);
+        // console.log(`Bonus: ${bonus.buildRate}`);
         if (!bonus) continue;
         bonus.buildRate += entry.buildRadiusBoost || 0;
         bonus.flaggy += entry.flaggyRadiusBoost || 0;
