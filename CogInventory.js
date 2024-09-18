@@ -411,8 +411,8 @@ class CogInventory {
       }
 
       for (const boostCord of boosted) {
-        console.log("boostCord", boostCord);
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
+        console.log("bonus", bonus);
 
         if (!bonus) continue;
         bonus.buildRate += entry.buildRadiusBoost || 0;
