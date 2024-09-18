@@ -445,7 +445,10 @@ class CogInventory {
       const bonus = bonusGrid[pos.y][pos.x];
       result.flagBoost += bonus.flagBoost || 0;
     }
-    result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
+    const upgra = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
+    console.log(`FLAGGY: ${result.flaggy}`);
+    console.log(`CALCULATED FLAGGY: ${upgra}`);
+    result.flaggy = upgra;
 
     console.log(
       `Result BR: ${result.buildRate}, Result EB: ${result.expBonus}, Result F: ${result.flaggy}, Result EB: ${result.expBoost}`
