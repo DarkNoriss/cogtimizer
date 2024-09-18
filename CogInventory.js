@@ -344,7 +344,17 @@ class CogInventory {
       }))
     );
 
-    console.log("bonusGrid initlal", bonusGrid);
+    const bonusGrid2 = Array.from({ length: INV_ROWS }, () =>
+      Array.from({ length: INV_COLUMNS }, () => ({
+        buildRate: 0,
+        expBonus: 0,
+        flaggy: 0,
+        expBoost: 0,
+        flagBoost: 0,
+      }))
+    );
+
+    console.log("bonusGrid initlal", bonusGrid2);
 
     for (let key of this.availableSlotKeys) {
       const entry = this.get(key);
