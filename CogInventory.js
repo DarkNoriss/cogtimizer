@@ -334,16 +334,15 @@ class CogInventory {
     console.log("result initial ", result.buildRate);
 
     const board = this.board;
-    const bonusGrid = Array(INV_ROWS)
-      .fill(0)
-      .map(() => {
-        return Array(INV_COLUMNS)
-          .fill(0)
-          .map(() => {
-            console.log(result.buildRate);
-            return { ...result };
-          });
-      });
+    const bonusGrid = Array.from({ length: INV_ROWS }, () =>
+      Array.from({ length: INV_COLUMNS }, () => ({
+        buildRate: 0,
+        expBonus: 0,
+        flaggy: 0,
+        expBoost: 0,
+        flagBoost: 0,
+      }))
+    );
 
     console.log("bonusGrid initlal", bonusGrid);
 
