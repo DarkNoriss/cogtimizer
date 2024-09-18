@@ -427,16 +427,21 @@ class CogInventory {
       result.buildRate += entry.buildRate || 0;
       result.expBonus += entry.expBonus || 0;
       result.flaggy += entry.flaggy || 0;
-      const pos = entry.position();
-      const bonus = bonusGrid[pos.y][pos.x];
-      const b = (bonus.buildRate || 0) / 100;
-      result.buildRate += Math.ceil((entry.buildRate || 0) * b);
-      if (entry.isPlayer) {
-        result.expBoost += bonus.expBoost || 0;
-      }
-      const f = (bonus.flaggy || 0) / 100;
-      result.flaggy += Math.ceil((entry.flaggy || 0) * f);
+      // const pos = entry.position();
+      // const bonus = bonusGrid[pos.y][pos.x];
+      // const b = (bonus.buildRate || 0) / 100;
+      // result.buildRate += Math.ceil((entry.buildRate || 0) * b);
+      // if (entry.isPlayer) {
+      //   result.expBoost += bonus.expBoost || 0;
+      // }
+      // const f = (bonus.flaggy || 0) / 100;
+      // result.flaggy += Math.ceil((entry.flaggy || 0) * f);
     }
+
+    console.log(
+      `Result BR: ${result.buildRate}, Result EB: ${result.expBonus}, Result F: ${result.flaggy}, Result EB: ${result.expBoost}`
+    );
+
     for (let key of this.flagPose) {
       const entry = this.get(key);
       const pos = entry.position();
