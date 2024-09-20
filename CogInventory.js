@@ -67,7 +67,6 @@ class Cog {
     this._key = Number.parseInt(v);
   }
   position(keyNum) {
-    console.log("Position", keyNum);
     const isDefault = keyNum === undefined;
     if (this._position && isDefault) return this._position;
     keyNum = keyNum ?? Number.parseInt(this.key);
@@ -75,6 +74,9 @@ class Cog {
     // build = 96-107
     // spare = 108-*
     const location = keyNum >= 96 ? (keyNum <= 107 ? "build" : "spare") : "board";
+
+    console.log("Position", keyNum);
+
     let perRow = 3;
     let offset = SPARE_START;
     if (location === "board") {
