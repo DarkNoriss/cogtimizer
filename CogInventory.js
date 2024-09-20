@@ -458,6 +458,7 @@ class CogInventory {
   }
 
   move(pos1, pos2) {
+    console.log("Moving", pos1, pos2);
     this._score = null;
     if (Array.isArray(pos1)) {
       pos1 = pos1[0] * INV_COLUMNS + pos1[1];
