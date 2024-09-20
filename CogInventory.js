@@ -87,6 +87,8 @@ class Cog {
     }
     const y = Math.floor((keyNum - offset) / perRow);
     const x = Math.floor((keyNum - offset) % perRow);
+
+    console.log("Position for key ", keyNum, x, y, location);
     const res = { location, x, y };
     if (isDefault) {
       this._position = res;
