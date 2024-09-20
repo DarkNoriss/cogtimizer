@@ -43,8 +43,8 @@ class Solver {
     const allSlots = inventory.availableSlotKeys;
     let counter = 0;
     let currentScore = this.getScoreSum(state.score);
-    console.log("Initial score:", currentScore);
-
+    // console.log("Initial score:", currentScore);
+    console.log(state);
     console.log("Trying to optimize");
     while (Date.now() - startTime < solveTime) {
       if (Date.now() - lastYield > 100) {
