@@ -75,7 +75,7 @@ class Cog {
     // spare = 108-*
     const location = keyNum >= 96 ? (keyNum <= 107 ? "build" : "spare") : "board";
 
-    console.log("Position", keyNum);
+    // console.log("Position", keyNum);
 
     let perRow = 3;
     let offset = SPARE_START;

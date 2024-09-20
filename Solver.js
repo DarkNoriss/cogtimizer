@@ -64,6 +64,8 @@ class Solver {
       // Moving a cog to an empty space changes the list of cog keys, so we need to re-fetch this
       const allKeys = state.cogKeys;
       const cogKey = allKeys[Math.floor(Math.random() * allKeys.length)];
+      console.log("Slot key: ", slotKey);
+      console.log("Cog key: ", cogKey);
       const slot = state.get(slotKey);
       const cog = state.get(cogKey);
 
@@ -98,6 +100,8 @@ class Solver {
       // Moving a cog to an empty space changes the list of cog keys, so we need to re-fetch this
       const allKeys = inventory.cogKeys;
       const cogKey = allKeys[Math.floor(Math.random() * allKeys.length)];
+      console.log("Slot key: ", slotKey);
+      console.log("Cog key: ", cogKey);
       const slot = inventory.get(slotKey);
       const cog = inventory.get(cogKey);
 
