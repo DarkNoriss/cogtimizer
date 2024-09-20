@@ -67,6 +67,7 @@ class Cog {
     this._key = Number.parseInt(v);
   }
   position(keyNum) {
+    console.log("Position", keyNum);
     const isDefault = keyNum === undefined;
     if (this._position && isDefault) return this._position;
     keyNum = keyNum ?? Number.parseInt(this.key);
