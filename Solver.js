@@ -43,6 +43,7 @@ class Solver {
     const allSlots = inventory.availableSlotKeys;
     let counter = 0;
     let currentScore = this.getScoreSum(state.score);
+    console.log("Initial score:", currentScore);
 
     console.log("Trying to optimize");
     while (Date.now() - startTime < solveTime) {
@@ -56,7 +57,6 @@ class Solver {
         state = inventory.clone();
         this.shuffle(state);
         currentScore = this.getScoreSum(state.score);
-        console.log(`Tried ${counter} switches, current score: ${currentScore}`);
         solutions.push(state);
       }
       const slotKey = allSlots[Math.floor(Math.random() * allSlots.length)];
