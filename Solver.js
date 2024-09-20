@@ -31,6 +31,7 @@ class Solver {
    * solveTime: Number - Time in ms how long the solver should run
    */
   async solve(inventory, solveTime = 1000) {
+    console.log("inventory", inventory);
     if (inventory.flagPose.length === 0) {
       // No flaggs placed means no use for flaggy rate
       this.weights.flaggy = 0;
@@ -44,8 +45,8 @@ class Solver {
     let counter = 0;
     let currentScore = this.getScoreSum(state.score);
     // console.log("Initial score:", currentScore);
-    console.log(state);
-    console.log("Trying to optimize");
+    // console.log(state);
+    // console.log("Trying to optimize");
     while (Date.now() - startTime < solveTime) {
       if (Date.now() - lastYield > 100) {
         // Prevent UI from freezing with very high solve times
