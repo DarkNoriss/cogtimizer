@@ -75,8 +75,6 @@ class Cog {
     // spare = 108-*
     const location = keyNum >= 96 ? (keyNum <= 107 ? "build" : "spare") : "board";
 
-    // console.log("Position", keyNum);
-
     let perRow = 3;
     let offset = SPARE_START;
     if (location === "board") {
@@ -88,7 +86,6 @@ class Cog {
     const y = Math.floor((keyNum - offset) / perRow);
     const x = Math.floor((keyNum - offset) % perRow);
 
-    console.log("Position for key ", keyNum, x, y, location);
     const res = { location, x, y };
     if (isDefault) {
       this._position = res;
@@ -434,8 +431,9 @@ class CogInventory {
       result.expBonus += entry.expBonus || 0;
       result.flaggy += entry.flaggy || 0;
       const pos = entry.position();
-      // console.log(pos);
+      console.log(pos);
       const bonus = bonusGrid[pos.y][pos.x];
+      console.log(bonus);
       const b = (bonus.buildRate || 0) / 100;
       const mathCel = Math.ceil((entry.buildRate || 0) * b);
       result.buildRate += mathCel;
@@ -454,25 +452,16 @@ class CogInventory {
     }
     result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
 
-    // console.log(`BUILD RATE: ${result.buildRate}`);
-    // console.log(`EXP BONUS: ${result.expBonus}`);
-    // console.log(`FLAGGY: ${result.flaggy}`);
-    // console.log(`EXP BOOST: ${result.expBoost}`);
-    // console.log(`FLAGGY BOOST: ${result.flagBoost}`);
-
     return (this._score = result);
   }
 
   move(pos1, pos2) {
-    // console.log("Moving", pos1, pos2);
     this._score = null;
     if (Array.isArray(pos1)) {
-      console.log("Array move");
       pos1 = pos1[0] * INV_COLUMNS + pos1[1];
       pos2 = pos2[0] * INV_COLUMNS + pos2[1];
     }
     if (pos1 instanceof Object) {
-      console.log("Object move");
       pos1 = pos1.y * INV_COLUMNS + pos1.x;
       pos2 = pos2.y * INV_COLUMNS + pos2.x;
     }
