@@ -73,6 +73,7 @@ class Cog {
     // board = 0-95
     // build = 96-107
     // spare = 108-*
+    console.log(`Getting position for key ${keyNum}...`);
     const location = keyNum >= 96 ? (keyNum <= 107 ? "build" : "spare") : "board";
 
     let perRow = 3;
@@ -85,6 +86,8 @@ class Cog {
     }
     const y = Math.floor((keyNum - offset) / perRow);
     const x = Math.floor((keyNum - offset) % perRow);
+
+    console.log(`Position: ${location}, ${x}, ${y}`);
 
     const res = { location, x, y };
     if (isDefault) {
@@ -431,9 +434,8 @@ class CogInventory {
       result.expBonus += entry.expBonus || 0;
       result.flaggy += entry.flaggy || 0;
       const pos = entry.position();
-      console.log("Position: ", pos, "Key: ", entry.key);
       const bonus = bonusGrid[pos.y][pos.x];
-      console.log(bonus);
+      // console.log(bonus);
       const b = (bonus.buildRate || 0) / 100;
       const mathCel = Math.ceil((entry.buildRate || 0) * b);
       result.buildRate += mathCel;
