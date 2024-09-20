@@ -429,6 +429,7 @@ class CogInventory {
       result.expBonus += entry.expBonus || 0;
       result.flaggy += entry.flaggy || 0;
       const pos = entry.position();
+      console.log(pos);
       const bonus = bonusGrid[pos.y][pos.x];
       const b = (bonus.buildRate || 0) / 100;
       const mathCel = Math.ceil((entry.buildRate || 0) * b);

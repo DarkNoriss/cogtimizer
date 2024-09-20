@@ -67,10 +67,6 @@ class Solver {
       const slot = state.get(slotKey);
       const cog = state.get(cogKey);
 
-      console.log("allKeys", allKeys);
-      console.log("cogKey", cogKey);
-
-      break;
       if (slot.fixed || cog.fixed || cog.position().location === "build") continue;
       state.move(slotKey, cogKey);
       const scoreSumUpdate = this.getScoreSum(state.score);
