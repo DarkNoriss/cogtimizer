@@ -462,7 +462,7 @@ class CogInventory {
   }
 
   move(pos1, pos2) {
-    console.log("Moving", pos1, pos2);
+    // console.log("Moving", pos1, pos2);
     this._score = null;
     if (Array.isArray(pos1)) {
       console.log("Array move");
