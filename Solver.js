@@ -109,6 +109,7 @@ class Solver {
   removeUselesMoves(inventory) {
     const goal = inventory.score;
     const cogsToMove = Object.values(inventory.cogs).filter((c) => c.key !== c.initialKey);
+    console.log("Removing useless moves", cogsToMove.length);
     // Check if move still changes something
     for (let i = 0; i < cogsToMove.length; i++) {
       const cog1 = cogsToMove[i];
@@ -127,7 +128,9 @@ class Solver {
 
         continue;
       }
+
       inventory.move(cog1Key, cog2Key);
     }
+    console.log("Done removing useless moves", cogsToMove.length);
   }
 }
