@@ -263,7 +263,8 @@
       
       f.printMove = (stepNumber, board, cog1, cog2, pos1, pos2, showStats = false) => {
         const toAdd = createElem("p");
-
+        
+        console.log("Switch", pos1, pos2);
         let text = `Switch ${pos1.location} \
         [${pos1.x + 1}|${pos1.y + 1}]`;
         if (showStats) {
@@ -314,7 +315,7 @@
           });
           delete interimCogs[cog.key];
         }
-
+        console.log("Optimal steps", steps);
         return steps;
       }
 
@@ -490,7 +491,6 @@
         document.getElementById("flaggyrate").innerText = `${mmoifyNumber(best.score.flaggy - start.score.flaggy)}/HR`;
         
         optimalSteps = f.getOptimalSteps(best.board, best.cogs);
-        console.log("Optimal steps", optimalSteps);
         f.printOptimalSteps(optimalSteps);
         if (document.getElementById("showSolved").checked) {
           // Show solved board 
