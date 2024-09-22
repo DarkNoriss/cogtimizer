@@ -490,6 +490,7 @@
         document.getElementById("flaggyrate").innerText = `${mmoifyNumber(best.score.flaggy - start.score.flaggy)}/HR`;
         
         optimalSteps = f.getOptimalSteps(best.board, best.cogs);
+        console.log("Optimal steps", optimalSteps);
         f.printOptimalSteps(optimalSteps);
         if (document.getElementById("showSolved").checked) {
           // Show solved board 
