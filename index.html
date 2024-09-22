@@ -290,6 +290,8 @@
         const cogsToMove = Object.values(cogs)
           .map(c=>{return new Cog(c)})
           .filter((c) => c.key !== c.initialKey);
+        
+        console.log("Cogs to move", cogsToMove);
 
         const interimCogs = {};
         for (const cog of cogsToMove) {
@@ -315,7 +317,9 @@
           });
           delete interimCogs[cog.key];
         }
+
         console.log("Optimal steps", steps);
+        
         return steps;
       }
 
