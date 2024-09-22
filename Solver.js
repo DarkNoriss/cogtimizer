@@ -132,6 +132,7 @@ class Solver {
 
       inventory.move(cog1Key, cog2Key);
     }
-    console.log("Done removing useless moves", cogsToMove.length);
+    const movesLeft = Object.values(inventory.cogs).filter((c) => c.key !== c.initialKey);
+    console.log("Done removing useless moves", movesLeft.length);
   }
 }
