@@ -424,7 +424,7 @@ class CogInventory {
       }
     }
 
-    const bon = 0;
+    let bon = 0;
     bonusGrid.forEach((element) => {
       element.forEach((el) => {
         bon += el.buildRate;
