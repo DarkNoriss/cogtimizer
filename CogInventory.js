@@ -426,17 +426,17 @@ class CogInventory {
       }
     }
 
-    // let bon = 0;
-    // bonusGrid.forEach((element) => {
-    //   element.forEach((el) => {
-    //     bon += el.buildRate;
-    //     bon += el.flaggy;
-    //     bon += el.expBoost;
-    //     bon += el.flagBoost;
-    //   });
-    // });
+    let bon = 0;
+    bonusGrid.forEach((element) => {
+      element.forEach((el) => {
+        bon += el.buildRate;
+        bon += el.flaggy;
+        bon += el.expBoost;
+        bon += el.flagBoost;
+      });
+    });
 
-    // console.log("Bonus: ", bon);
+    console.log("Bonus: ", bon);
 
     // Bonus grid done, now we can sum everything up
     for (let key of this.availableSlotKeys) {
