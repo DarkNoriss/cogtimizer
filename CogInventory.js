@@ -412,6 +412,8 @@ class CogInventory {
           break;
       }
 
+      console.log("Boosted: ", boosted.length);
+
       for (const boostCord of boosted) {
         const bonus = CogInventory._saveGet(bonusGrid, ...boostCord);
 
@@ -433,6 +435,7 @@ class CogInventory {
         bon += el.flagBoost;
       });
     });
+
     console.log("Bonus: ", bon);
 
     // Bonus grid done, now we can sum everything up
