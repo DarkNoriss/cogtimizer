@@ -463,6 +463,7 @@ class CogInventory {
       result.flagBoost += bonus.flagBoost || 0;
     }
     result.flaggy = Math.floor(result.flaggy * (1 + this.flaggyShopUpgrades * 0.5));
+    console.log("Score: ", result);
     return (this._score = result);
   }
 
